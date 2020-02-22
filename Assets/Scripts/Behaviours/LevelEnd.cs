@@ -7,10 +7,17 @@ public class LevelEnd : MonoBehaviour
 {
     public GameObject chargeHolder;
 
+    AudioSource source;
+
     [Range(0,5)]
-    public float nextLevelLoadDelay = 1f;
+    public float nextLevelLoadDelay;
 
     private bool m_nextSceneLoading = false;
+
+    void Start()
+    {
+        source = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,6 +27,7 @@ public class LevelEnd : MonoBehaviour
         {
             // Game is won, move to the next level
             Debug.Log("Level is won");
+            source.Play();
             GameManager.Instance.currentLevel += 1;
             StartCoroutine(LoadNextLevel(GameManager.Instance.currentLevel));
         }
