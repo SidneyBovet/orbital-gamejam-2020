@@ -2,41 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Capacitor : MonoBehaviour
+public abstract class Capacitor : MonoBehaviour
 {
     public int capacity;
+    public int currentCharge;
 
-    int chargeDiff;
+    public abstract void OnContact(Capacitor other);
 
-    // Start is called before the first frame update
-    void Start()
+    public abstract void OnChargeChanged();
+
+    private void Start()
     {
-
+        OnChargeChanged();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Ball")
-        {
-            chargeDiff = GameManager.Instance.chargesRemaining - GameManager.Instance.maxCharges;
+        var otherCapa = other.GetComponent<Capacitor>();
 
-            if (chargeDiff < 0)
-            {
-                // Require charges
-                if (Mathf.Abs(chargeDiff) > capacity)
-                {
-                    // Transfer all charges, depleted
-                    GameManager.Instance.chargesRemaining += capacity;
-                    capacity = 0;
-                }
-                else
-                {
-                    // Transfer difference of charges
-                    capacity -= Mathf.Abs(chargeDiff);
-                    capacity = Mathf.Max(0, capacity);
-                    GameManager.Instance.chargesRemaining += Mathf.Abs(chargeDiff);
-                }
-            }
+        if (otherCapa != null)
+        {
+            OnContact(otherCapa);
+            otherCapa.OnChargeChanged();
+            OnChargeChanged();
         }
     }
 }
