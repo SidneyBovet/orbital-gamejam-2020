@@ -15,7 +15,9 @@ public class LevelEnd : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Check that the ball has entered
-        if (other.gameObject.name == "Ball") {
+        if (other.gameObject.name == "Ball"
+            && !m_nextSceneLoading)
+        {
             // Game is won, move to the next level
             Debug.Log("Level is won");
             GameManager.Instance.currentLevel += 1;
@@ -25,10 +27,14 @@ public class LevelEnd : MonoBehaviour
 
     private IEnumerator LoadNextLevel(int levelNumber)
     {
-        Debug.Log("Loading level " + levelNumber + " in " + nextLevelLoadDelay + "s");
+        if (!m_nextSceneLoading)
+        {
+            m_nextSceneLoading = true;
 
-        yield return new WaitForSeconds(nextLevelLoadDelay);
+            Debug.Log("Loading level " + levelNumber + " in " + nextLevelLoadDelay + "s");
+            yield return new WaitForSeconds(nextLevelLoadDelay);
 
-        SceneManager.LoadScene("Level-" + levelNumber);
+            SceneManager.LoadScene("Level-" + levelNumber);
+        }
     }
 }
