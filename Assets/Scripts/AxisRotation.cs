@@ -18,8 +18,6 @@ public class AxisRotation : MonoBehaviour
         float x = Input.GetAxis("Vertical") * maxRotation;
         float z = -Input.GetAxis("Horizontal") * maxRotation;
 
-        Debug.Log("x: " + x + ", z: " + z);
-
         m_targetRotation = Quaternion.Euler(x, 0, z);
         transform.rotation = Quaternion.Slerp(transform.rotation, m_targetRotation, rotationSpeed);
     }
