@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public bool isInMenu = true;
 
+    public int maxCharges = 5;
     public int chargesRemaining = 0;
     public int currentCharge = 1;  // 1 = positive, -1 = negative
 }
