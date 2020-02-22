@@ -4,32 +4,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    static GameManager instance = null;
-    static readonly object padlock = new object();
+    private static GameManager instance;
 
-    GameManager() { }  // Block instantiation
+    public static GameManager Instance { get { return instance; } }
 
-    // Prevent deleting this object between scene changes
-    void Awake()
+    private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
-    }
-
-    public static GameManager Instance
-    {
-        get
+        if (instance != null && instance != this)
         {
-            if (instance == null)
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                    {
-                        instance = new GameManager();
-                    }
-                }
-            }
-            return instance;
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
         }
     }
 
@@ -37,11 +24,4 @@ public class GameManager : MonoBehaviour
     public int currentLevel = 0;
     public int score = 0;
     public bool isInMenu = true;
-
-    public void reset()
-    {
-        currentLevel = 0;
-        score = 0;
-        isInMenu = true;
-    }
 }
