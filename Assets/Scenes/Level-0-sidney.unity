@@ -294,6 +294,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 3856837581450413995, guid: 380af6c461cf953488fe22fa95b8da4f,
+        type: 3}
+      propertyPath: orthographic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856837581450413996, guid: 380af6c461cf953488fe22fa95b8da4f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -302,7 +307,7 @@ PrefabInstance:
     - target: {fileID: 3856837581450413996, guid: 380af6c461cf953488fe22fa95b8da4f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3856837581450413996, guid: 380af6c461cf953488fe22fa95b8da4f,
         type: 3}
