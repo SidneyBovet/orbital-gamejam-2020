@@ -29,18 +29,28 @@ public class LevelEnd : MonoBehaviour
             Debug.Log("Level is won");
             source.Play();
             GameManager.Instance.currentLevel += 1;
-            StartCoroutine(LoadNextLevel(GameManager.Instance.currentLevel));
+
+            if (GameManager.Instance.currentLevel == 1)
+            {
+                StartCoroutine(FindObjectOfType<TransitionManager>().StartCreditsAndLoadNextLevel());
+            }
+            else
+            {
+                StartCoroutine(LoadNextLevel(GameManager.Instance.currentLevel, nextLevelLoadDelay));
+            }
         }
     }
 
-    private IEnumerator LoadNextLevel(int levelNumber)
+    public IEnumerator LoadNextLevel(int levelNumber, float seconds)
     {
         if (!m_nextSceneLoading)
         {
             m_nextSceneLoading = true;
 
-            Debug.Log("Loading level " + levelNumber + " in " + nextLevelLoadDelay + "s");
-            yield return new WaitForSeconds(nextLevelLoadDelay);
+            Debug.Log($"Loading level {levelNumber} in {seconds}s");
+            yield return new WaitForSeconds(seconds);
+
+            FindObjectOfType<AudioManager>()?.NextLevel();
 
             SceneManager.LoadScene("Level-" + levelNumber);
         }
