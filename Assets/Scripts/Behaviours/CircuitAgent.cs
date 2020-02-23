@@ -9,7 +9,11 @@ public class CircuitAgent : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         var painter = GameObject.FindObjectOfType<PaintRenderer>();
-        if (painter == null || !painter.IsDrawing) return;
+        if (painter == null || !painter.IsDrawing)
+        {
+            connected.Clear();
+            return;
+        }
 
         var newCapa = other.GetComponent<Capacitor>();
         if (newCapa == null) return;

@@ -16,7 +16,10 @@ public class Door : MonoBehaviour, ITriggerable
 
     public void OnChargeChange(Capacitor capa)
     {
-        if (capa.currentCharge == targetCharge)
+        if ((targetCharge > 0
+            && capa.currentCharge >= targetCharge)
+            || (targetCharge <= 0
+            && capa.currentCharge <= targetCharge))
         {
             StartCoroutine(Move(openHeight));
         }
