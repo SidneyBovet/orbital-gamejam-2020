@@ -25,6 +25,7 @@ public class LevelEnd : MonoBehaviour
         if (other.gameObject.name == "Ball"
             && !m_nextSceneLoading)
         {
+            m_nextSceneLoading = true;
             // Game is won, move to the next level
             Debug.Log("Level is won");
             source.Play();
@@ -43,16 +44,11 @@ public class LevelEnd : MonoBehaviour
 
     public IEnumerator LoadNextLevel(int levelNumber, float seconds)
     {
-        if (!m_nextSceneLoading)
-        {
-            m_nextSceneLoading = true;
+        Debug.Log($"Loading level {levelNumber} in {seconds}s");
+        yield return new WaitForSeconds(seconds);
 
-            Debug.Log($"Loading level {levelNumber} in {seconds}s");
-            yield return new WaitForSeconds(seconds);
+        FindObjectOfType<AudioManager>()?.NextLevel();
 
-            FindObjectOfType<AudioManager>()?.NextLevel();
-
-            SceneManager.LoadScene("Level-" + levelNumber);
-        }
+        SceneManager.LoadScene("Level-" + levelNumber);
     }
 }
