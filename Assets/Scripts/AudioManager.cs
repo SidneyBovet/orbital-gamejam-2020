@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
 
     public void NextLevel()
     { 
-        Debug.Log("AudioManager start");
+        Debug.Log("AudioManager next level");
         DontDestroyOnLoad(this);
         m_audioSource = GetComponent<AudioSource>();
 
