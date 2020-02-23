@@ -78,7 +78,7 @@ public class AudioManager : MonoBehaviour
 
         // wait for it to be almost done
         //Debug.Log($"Source is {m_audioSource.clip.length}, we already played {m_audioSource.time} of it, sleeping for another {m_audioSource.clip.length - m_audioSource.time - 0.1f}.");
-        yield return new WaitForSeconds(m_audioSource.clip.length - m_audioSource.time - 500);
+        yield return new WaitForSeconds(m_audioSource.clip.length - m_audioSource.time - 0.5f);
 
         //Debug.Log($"Starting song {nextTrack}");
         m_audioSource.clip = clips[nextTrack];
