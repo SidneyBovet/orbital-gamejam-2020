@@ -28,7 +28,6 @@ public class LevelEnd : MonoBehaviour
             m_nextSceneLoading = true;
 
             // Game is won, move to the next level
-            Debug.Log("Level is won");
             source.Play();
             GameManager.Instance.currentLevel += 1;
 
@@ -36,6 +35,8 @@ public class LevelEnd : MonoBehaviour
             {
                 GameManager.Instance.currentLevel = 0;
             }
+
+            Debug.Log("Loadig next -> " + GameManager.Instance.currentLevel);
 
             if (GameManager.Instance.currentLevel == 1)
             {

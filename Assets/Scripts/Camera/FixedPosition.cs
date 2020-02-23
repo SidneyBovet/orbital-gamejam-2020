@@ -28,7 +28,7 @@ public class FixedPosition : MonoBehaviour
         indicator.text = "" + GameManager.Instance.currentCharge;
 
         // Camera rotation
-        float cameraRotation = -Input.GetAxis("Mouse X") * 80;
+        float cameraRotation = Input.GetAxis("Mouse X") * 80;
         gameObject.transform.RotateAround(target.transform.position, Vector3.up, cameraRotation * Time.deltaTime);
     }
 }
