@@ -5,19 +5,18 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class PaintRenderer : MonoBehaviour
 {
+    public bool IsDrawing { get; private set; }
+
     public float trigger;
     public Transform ball;
 
     LineRenderer paint;
-    bool isDrawing;
 
     // Start is called before the first frame update
     void Start()
     {
         paint = GetComponent<LineRenderer>();
-        Debug.Log($"{ball}");
         if (ball == null) ball = GameObject.Find("Ball").transform;
-        Debug.Log($"{ball.name}");
         transform.rotation = Quaternion.LookRotation(Vector3.down, Vector3.back);
 
         paint.useWorldSpace = false;
@@ -31,10 +30,10 @@ public class PaintRenderer : MonoBehaviour
 
         if (trigger > 0f)
         {
-            if (!isDrawing)
+            if (!IsDrawing)
             {
                 paint.positionCount = 0;
-                isDrawing = true;
+                IsDrawing = true;
             }
 
             // local position of this next point
@@ -46,7 +45,7 @@ public class PaintRenderer : MonoBehaviour
         }
         else
         {
-            isDrawing = false;
+            IsDrawing = false;
         }
     }
 }

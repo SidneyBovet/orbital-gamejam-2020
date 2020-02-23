@@ -17,7 +17,10 @@ public class SinkCapa : Capacitor
         this.currentCharge = actualEndCharge;
 
         // Notify connected trigger if any
-        connected?.GetComponent<ITriggerable>()?.OnChargeChange(this);
+        if (connected != null)
+        {
+            connected.GetComponent<ITriggerable>().OnChargeChange(this);
+        }
     }
 
     public override void OnChargeChanged()
