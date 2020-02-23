@@ -34,7 +34,7 @@ public class AudioManager : MonoBehaviour
     }
 
     public void NextLevel()
-    { 
+    {
         Debug.Log("AudioManager next level");
         DontDestroyOnLoad(this);
         m_audioSource = GetComponent<AudioSource>();
@@ -77,10 +77,10 @@ public class AudioManager : MonoBehaviour
         m_audioSource.loop = false;
 
         // wait for it to be almost done
-        Debug.Log($"Source is {m_audioSource.clip.length}, we already played {m_audioSource.time} of it, sleeping for another {m_audioSource.clip.length - m_audioSource.time - 0.1f}.");
-        yield return new WaitForSeconds(m_audioSource.clip.length - m_audioSource.time);
+        //Debug.Log($"Source is {m_audioSource.clip.length}, we already played {m_audioSource.time} of it, sleeping for another {m_audioSource.clip.length - m_audioSource.time - 0.1f}.");
+        yield return new WaitForSeconds(m_audioSource.clip.length - m_audioSource.time - 500);
 
-        Debug.Log($"Starting song {nextTrack}");
+        //Debug.Log($"Starting song {nextTrack}");
         m_audioSource.clip = clips[nextTrack];
         m_audioSource.loop = loop;
         if (!loop)

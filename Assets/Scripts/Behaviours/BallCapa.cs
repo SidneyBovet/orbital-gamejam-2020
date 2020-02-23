@@ -17,5 +17,7 @@ public class BallCapa : Capacitor
             gameObject.GetComponent<Renderer>().material.color = Color.red;
         else
             gameObject.GetComponent<Renderer>().material.color = Color.grey;
+
+        GameManager.Instance.currentCharge = currentCharge;
     }
 }

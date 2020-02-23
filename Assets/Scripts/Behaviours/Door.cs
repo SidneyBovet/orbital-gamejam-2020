@@ -28,7 +28,7 @@ public class Door : MonoBehaviour, ITriggerable
 
     private IEnumerator Move(float targetHeight)
     {
-        const int steps = 100;
+        const int steps = 40;
         float translateStep = (targetHeight - transform.localPosition.y) / steps;
         for(int i = 0; i < steps; i++)
         {

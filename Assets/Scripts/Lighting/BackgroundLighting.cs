@@ -23,6 +23,8 @@ public class BackgroundLighting : MonoBehaviour
     {
         lastCharge = GameManager.Instance.currentCharge;
 
+        TestCharge();
+
         SwapColors();
     }
 
@@ -32,6 +34,8 @@ public class BackgroundLighting : MonoBehaviour
         if (Mathf.Sign(lastCharge) != Mathf.Sign(GameManager.Instance.currentCharge))
         {
             lastCharge = GameManager.Instance.currentCharge;
+
+            TestCharge();
         }
 
         SwapColors();
@@ -39,7 +43,13 @@ public class BackgroundLighting : MonoBehaviour
 
     void SwapColors()
     {
-        // Has an inversion happened?
+        // Lerp colors for smooth effects FFS!
+        light1.color = Color.Lerp(light1.color, buffer1, 3.0f * Time.deltaTime);
+        light2.color = Color.Lerp(light2.color, buffer2, 3.0f * Time.deltaTime);
+    }
+
+    void TestCharge()
+    {
         if (Mathf.Sign(lastCharge) > 0)
         {
             buffer1 = positive1;
@@ -50,9 +60,5 @@ public class BackgroundLighting : MonoBehaviour
             buffer1 = negative1;
             buffer2 = negative2;
         }
-
-        // Lerp colors for smooth effects FFS!
-        light1.color = Color.Lerp(light1.color, buffer1, 5.0f * Time.deltaTime);
-        light2.color = Color.Lerp(light2.color, buffer2, 5.0f * Time.deltaTime);
     }
 }
