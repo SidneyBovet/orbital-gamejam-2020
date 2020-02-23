@@ -30,5 +30,7 @@ public class SinkCapa : Capacitor
             gameObject.GetComponent<Renderer>().material.color = Color.red;
         else
             gameObject.GetComponent<Renderer>().material.color = Color.grey;
+
+        gameObject.GetComponent<AudioSource>().Play();
     }
 }
