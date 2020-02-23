@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     // Shared gamestate
     public int currentLevel = 0;
+    public int maxLevel = 2;
     public int score = 0;
     public bool isInMenu = true;
 

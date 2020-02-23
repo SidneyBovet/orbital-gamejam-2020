@@ -26,10 +26,16 @@ public class LevelEnd : MonoBehaviour
             && !m_nextSceneLoading)
         {
             m_nextSceneLoading = true;
+
             // Game is won, move to the next level
             Debug.Log("Level is won");
             source.Play();
             GameManager.Instance.currentLevel += 1;
+
+            if (GameManager.Instance.currentLevel > GameManager.Instance.maxLevel)
+            {
+                GameManager.Instance.currentLevel = 0;
+            }
 
             if (GameManager.Instance.currentLevel == 1)
             {
